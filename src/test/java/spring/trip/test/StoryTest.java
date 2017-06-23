@@ -1,5 +1,6 @@
 package spring.trip.test;
 
+
 import org.junit.Test;
 
 public class StoryTest {
@@ -8,5 +9,4 @@ public class StoryTest {
 	public void jTest() throws Exception{
 
 	}
-
 }
