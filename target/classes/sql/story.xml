@@ -3,40 +3,25 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="storyMapper">
+	<resultMap type="story" id="storyList">
+		<result property="storyNo" column="story_no"/>
+		<result property="storyTitle" column="story_title"/>
+		<result property="storyContent" column="story_content"/>
+		<result property="storyLocation" column="story_location"/>
+		<result property="storyTripDate" column="story_trip_date"/>
+		<result property="storyPictureUrl" column="story_picture_url"/>
+		<result property="storyIsPublic" column="story_is_public"/>
+		<result property="storyHit" column="story_hit"/>
+		<result property="storyCreateDate" column="story_create_date"/>
+	</resultMap>
 	
+	<delete id="deleteStory" parameterType="int">
+		DELETE FROM story WHERE story_no=${value}
+	</delete>
+	
+	<select id="showStory" parameterType="int">
+		SELECT * FROM story s, member m
+		WHERE s.email=m.email
+		AND s.story_no=#{value}
+	</select>
 </mapper>
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
