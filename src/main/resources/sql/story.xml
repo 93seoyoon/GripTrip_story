@@ -3,7 +3,45 @@
 	"http://mybatis.org/dtd/mybatis-3-mapper.dtd">
 	
 <mapper namespace="storyMapper">
+	<insert id="insertStoryInfo" parameterType="stroy">
+		<selectKey keyProperty="no" resultType="int" order="BEFORE">
+			SELECT story_seq.nextVal FROM dual
+		</selectKey>
+		INSERT INTO story 
+		VALUES(
+			#{storyNo},
+			#{book.bookNo},
+			#{member.email},
+			#{storyTitle},
+			#{storyContent},
+			#{storyLocation},
+			#{storyTripDate},
+			#{storyPictureUrl},
+			#{storyIsPublic},
+			#{storyHit},
+			#{storyCreateDate},
+			#{storyLatitude},
+			#{storyLongitude})
+	</insert>
 	
+	<update id="updateStory" parameterType="story">
+		UPDATE story
+		SET story_title = #{storyTitle},
+		story_content = #{storyContent},
+		story_location = #{storyLocation},
+		story_trip_date = #{storyTripDate},
+		story_picture_url = #{storyPictureUrl},
+		story_is_public = #{storyIsPublic},
+		story_latitude = #{storyLatitude},
+		story_longitude = #{storyLongitude}
+		WHERE story_no = #{storyNo}
+	</update>
+	
+	<update id="upStoryHit" parameterType="int">
+		UPDATE story
+	 	SET story_hit = story_hit+1
+	 	WHERE story_no = #{value}
+	</update>
 </mapper>
 
 
